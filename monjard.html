@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicité et Annonce MonJard1.fr</title>
+    <title>Publicité MonJard1.fr</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -11,8 +11,6 @@
             color: #fff;
             background-color: #333;
             background-size: cover;
-            position: relative;
-            overflow: hidden; /* Pour s'assurer que les éléments restent dans le cadre */
         }
         .ad {
             border: 3px solid #4CAF50; /* Encadré vert */
@@ -22,14 +20,9 @@
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             transition: transform 0.3s, background-color 0.3s;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1; /* Assure que l'annonce sort de derrière */
         }
         .ad:hover {
-            transform: scale(1.05) translateX(-50%);
+            transform: scale(1.05);
             background-color: rgba(0, 0, 0, 0.85);
         }
         .ad img {
@@ -54,53 +47,6 @@
             background-repeat: no-repeat;
             background-position: top left;
             opacity: 0.3;
-            pointer-events: none; /* Évite que l'élément soit cliquable */
-        }
-        .announcement {
-            font-size: 18px;
-            border: 3px solid #4CAF50;
-            padding: 10px;
-            width: 80%;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            position: absolute;
-            top: -100%; /* Commence en dehors du cadre en haut */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 0; /* Assure que l'annonce est derrière */
-            opacity: 0; /* Commence invisible */
-        }
-        @keyframes slide-in-out {
-            0% {
-                top: -100%;
-                opacity: 0;
-            }
-            10% {
-                top: 20%;
-                opacity: 1;
-            }
-            90% {
-                top: 20%;
-                opacity: 1;
-            }
-            100% {
-                top: -100%;
-                opacity: 0;
-            }
-        }
-        .discord-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #5865F2; /* Couleur Discord */
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 20px;
-        }
-        .discord-button:hover {
-            background-color: #485bdb;
         }
     </style>
 </head>
@@ -113,25 +59,5 @@
         </a>
         <p>Découvrez nos produits de culture !</p>
     </div>
-    <div class="announcement">
-        <h2>Annonce</h2>
-        <p>Je cherche des testeurs pour un bot Discord dans un RP GTA. Contactez-moi pour plus d'infos !</p>
-        <a href="https://discord.gg/ey3M973yhz" target="_blank" class="discord-button">Rejoignez-nous sur Discord</a>
-    </div>
-
-    <script>
-        const announcement = document.querySelector('.announcement');
-
-        function showAnnouncement() {
-            announcement.style.animation = 'slide-in-out 12s forwards';
-            setTimeout(() => {
-                announcement.style.animation = 'none';
-                setTimeout(showAnnouncement, 600000); // Afficher après 10 minutes
-            }, 120000); // Cacher après 2 minutes
-        }
-
-        // Démarrer le cycle de l'annonce
-        showAnnouncement();
-    </script>
 </body>
 </html>
