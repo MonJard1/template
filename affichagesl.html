@@ -95,11 +95,24 @@
             currentIndex = nextIndex;
         }
 
-        // Afficher le premier produit
-        showNextAd();
+        // Fonction pour démarrer la boucle des publicités
+        function startAdLoop() {
+            // Afficher le premier produit
+            showNextAd();
 
-        // Afficher un nouveau produit toutes les 125 secondes
-        setInterval(showNextAd, 125000);
+            // Afficher un nouveau produit toutes les 125 secondes
+            const adInterval = setInterval(showNextAd, 125000);
+
+            // Arrêter la boucle après 10 minutes (600000 millisecondes) et relancer après une pause
+            setTimeout(() => {
+                clearInterval(adInterval); // Arrêter la boucle
+                ads.forEach(ad => ad.style.display = 'none'); // Masquer tous les produits
+                setTimeout(startAdLoop, 600000); // Attendre 10 minutes (600000 millisecondes) et relancer
+            }, 600000);
+        }
+
+        // Démarrer la boucle des publicités
+        startAdLoop();
     </script>
 </body>
 </html>
