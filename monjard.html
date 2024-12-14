@@ -62,27 +62,27 @@
             border-radius: 10px;
             position: absolute;
             top: 50%;
-            left: -100%; /* Commence en dehors du cadre à gauche */
+            right: -100%; /* Commence en dehors du cadre à droite */
             transform: translateY(-50%);
             z-index: 0; /* Assure que l'annonce est derrière */
-            visibility: hidden; /* Commence invisible */
+            opacity: 0; /* Commence invisible */
         }
         @keyframes slide-in-out {
             0% {
-                left: -100%;
-                visibility: visible;
+                right: -100%;
+                opacity: 0;
             }
-            25% {
-                left: 10%;
-                visibility: visible;
+            10% {
+                right: 0;
+                opacity: 1;
             }
-            75% {
-                left: 10%;
-                visibility: visible;
+            90% {
+                right: 0;
+                opacity: 1;
             }
             100% {
-                left: -100%;
-                visibility: hidden;
+                right: -100%;
+                opacity: 0;
             }
         }
         .discord-button {
@@ -120,7 +120,7 @@
         const announcement = document.querySelector('.announcement');
 
         function showAnnouncement() {
-            announcement.style.animation = 'slide-in-out 2s forwards';
+            announcement.style.animation = 'slide-in-out 12s forwards';
             setTimeout(() => {
                 announcement.style.animation = 'none';
                 setTimeout(showAnnouncement, 600000); // Afficher après 10 minutes
