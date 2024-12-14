@@ -3,87 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Effet de Neige et Promotions -20%</title>
+    <title>Promotion -20%</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             overflow: hidden; /* Empêche les barres de défilement */
             background-color: transparent; /* Fond transparent pour s'adapter à Streamlabs */
-        }
-        .flake {
-            position: absolute;
-            top: -5%; /* Les flocons commencent légèrement au-dessus du viewport */
-            font-size: 20px;
-            color: #fff;
-            pointer-events: none; /* Empêche l'interaction avec les éléments */
-            animation: fall 10s linear infinite, sway 3s ease-in-out infinite;
+            font-family: 'Arial', sans-serif;
         }
         .promotion {
+            position: absolute;
             font-size: 24px;
             color: #FFD700; /* Couleur dorée */
+            animation: jump 1s ease-in-out infinite;
         }
-        @keyframes fall {
-            to {
-                transform: translateY(105vh); /* Assurer que les flocons tombent hors du viewport */
-            }
-        }
-        @keyframes sway {
+        @keyframes jump {
             0%, 100% {
-                transform: translateX(0);
+                transform: translateY(0);
             }
             50% {
-                transform: translateX(20px);
+                transform: translateY(-30px); /* La promotion "saute" de 30px */
             }
         }
     </style>
 </head>
 <body>
-    <div id="flakes-container"></div>
+    <div id="promotions-container"></div>
 
     <script>
-        const snowflakeSymbols = ['❄', '❅', '❆'];
         const promotionSymbol = '-20%';
-        const flakeCount = 50;
-        const container = document.getElementById('flakes-container');
+        const promotionCount = 10;
+        const container = document.getElementById('promotions-container');
 
-        // Fonction pour créer un élément de neige ou de promotion
-        function createFlake(symbol, className) {
-            const flake = document.createElement('div');
-            flake.textContent = symbol;
-            flake.className = `flake ${className}`;
-            flake.style.left = Math.random() * 100 + 'vw';
-            flake.style.animationDelay = Math.random() * 10 + 's';
-            flake.style.opacity = Math.random();
-            container.appendChild(flake);
+        // Fonction pour créer un élément de promotion
+        function createPromotion() {
+            const promotion = document.createElement('div');
+            promotion.textContent = promotionSymbol;
+            promotion.className = 'promotion';
+            promotion.style.left = Math.random() * 100 + 'vw';
+            promotion.style.top = Math.random() * 100 + 'vh';
+            container.appendChild(promotion);
 
             // Supprimer l'élément après l'animation
             setTimeout(() => {
-                flake.remove();
-            }, 10000); // Durée de vie des flocons fixée à 10 secondes
+                promotion.remove();
+            }, 45000); // Durée de l'animation fixée à 45 secondes
         }
 
-        // Créer les flocons de neige et promotions
-        for (let i = 0; i < flakeCount; i++) {
-            const isPromotion = Math.random() > 0.8; // 20% de chance d'être une promotion
-            if (isPromotion) {
-                createFlake(promotionSymbol, 'promotion');
-            } else {
-                const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
-                createFlake(symbol, 'snowflake');
+        // Fonction pour démarrer l'animation des promotions
+        function startPromotionAnimation() {
+            // Créer plusieurs promotions
+            for (let i = 0; i < promotionCount; i++) {
+                createPromotion();
             }
+
+            // Répéter l'animation toutes les 30 minutes
+            setTimeout(startPromotionAnimation, 1800000); // 1800000 millisecondes = 30 minutes
         }
 
-        // Ajouter de nouveaux flocons de neige et promotions toutes les 2 secondes
-        setInterval(() => {
-            const isPromotion = Math.random() > 0.8; // 20% de chance d'être une promotion
-            if (isPromotion) {
-                createFlake(promotionSymbol, 'promotion');
-            } else {
-                const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
-                createFlake(symbol, 'snowflake');
-            }
-        }, 2000);
+        // Démarrer l'animation des promotions
+        startPromotionAnimation();
     </script>
 </body>
 </html>
