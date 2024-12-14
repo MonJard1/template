@@ -15,7 +15,7 @@
         .promotion {
             position: absolute;
             font-size: 24px;
-            color: #FFD700; /* Couleur dorée */
+            color: #006400; /* Vert foncé */
             animation: jump 1s ease-in-out infinite;
         }
         @keyframes jump {
@@ -33,6 +33,7 @@
 
     <script>
         const promotionSymbol = '-20%';
+        const newSymbol = 'monjard1.fr';
         const promotionCount = 10;
         const container = document.getElementById('promotions-container');
 
@@ -41,9 +42,41 @@
             const promotion = document.createElement('div');
             promotion.textContent = promotionSymbol;
             promotion.className = 'promotion';
-            promotion.style.left = Math.random() * 100 + 'vw';
-            promotion.style.top = Math.random() * 100 + 'vh';
+            promotion.style.left = Math.random() * 90 + 'vw';
+            promotion.style.top = Math.random() * 90 + 'vh';
+            promotion.dx = (Math.random() * 2 - 1) * 3; // Vitesse horizontale aléatoire
+            promotion.dy = (Math.random() * 2 - 1) * 3; // Vitesse verticale aléatoire
             container.appendChild(promotion);
+
+            function move() {
+                const rect = promotion.getBoundingClientRect();
+                if (rect.left + promotion.dx <= 0 || rect.right + promotion.dx >= window.innerWidth) {
+                    promotion.dx *= -1;
+                }
+                if (rect.top + promotion.dy <= 0 || rect.bottom + promotion.dy >= window.innerHeight) {
+                    promotion.dy *= -1;
+                }
+                promotion.style.left = rect.left + promotion.dx + 'px';
+                promotion.style.top = rect.top + promotion.dy + 'px';
+
+                // Détection de collision avec les autres promotions
+                document.querySelectorAll('.promotion').forEach(other => {
+                    if (other !== promotion) {
+                        const otherRect = other.getBoundingClientRect();
+                        if (!(rect.right < otherRect.left || 
+                              rect.left > otherRect.right || 
+                              rect.bottom < otherRect.top || 
+                              rect.top > otherRect.bottom)) {
+                            // Collision détectée, changer de texte
+                            promotion.textContent = newSymbol;
+                            other.textContent = newSymbol;
+                        }
+                    }
+                });
+
+                requestAnimationFrame(move);
+            }
+            move();
 
             // Supprimer l'élément après l'animation
             setTimeout(() => {
