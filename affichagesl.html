@@ -6,65 +6,122 @@
     <title>MonJard1.fr StreamLabs</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             color: #fff;
             background-color: #333;
+            background-size: cover;
         }
         .ad {
-            margin-bottom: 20px;
+            border: 3px solid #4CAF50; /* Encadré vert */
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 500px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .ad:hover {
+            transform: scale(1.05);
         }
         .ad img {
             max-width: 100%;
             height: auto;
+            border-radius: 5px;
+        }
+        .ad h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .ad p {
+            margin: 5px 0;
         }
         .announcement {
             font-size: 18px;
             margin-top: 20px;
+            border: 3px solid #4CAF50;
+            padding: 10px;
+            max-width: 500px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin: 20px auto;
+            animation: blink 1s linear infinite;
+        }
+        @keyframes blink {
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .discord-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #5865F2; /* Couleur Discord */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .discord-button:hover {
+            background-color: #485bdb;
         }
     </style>
 </head>
 <body>
     <div class="ad">
-        <h2>Visitez monjard1.fr</h2>
-        <img src="https://monjard1.fr/image1.jpg" alt="Image du site">
-        <p>Découvrez nos produits de culture!</p>
+        <h2>Visitez</h2>
+        <a href="https://monjard1.fr/" target="_blank">
+            <img src="https://monjard1.fr/themes/deo_furniture/assets/img/modules/deotemplate/images/Banniere.png" alt="Image du site">
+        </a>
+        <p>Découvrez nos produits de culture !</p>
     </div>
-	    <div class="ad">
+    <div class="ad">
         <h2>Pack d'Engrais</h2>
-        <img src="https://monjard1.fr/44-pack" alt="Produit 1">
+        <a href="https://monjard1.fr/44-pack" target="_blank">
+            <img src="https://jard1terieur.fr/702-large_default/hesi-terre-starterpack.jpg" alt="Pack d'Engrais">
+        </a>
         <p>Prix : 15€ à 75€</p>
-        <p>Description : Pack d'engrais débutant ou expert.</p>
+        <p>Nos packs d'engrais pour débutants et experts !</p>
     </div>
     <div class="ad">
         <h2>Box de Culture</h2>
-        <img src="https://monjard1.fr/11-chambre-culture" alt="Produit 2">
+        <a href="https://monjard1.fr/11-chambre-culture" target="_blank">
+            <img src="https://jard1terieur.fr/346-large_default/g-max200-200x200x200cm.jpg" alt="Box de Culture">
+        </a>
         <p>Prix : 70€ à 388€</p>
-        <p>Description : De toute taille, cultive ou tu veut.</p>
-    </div>
-        <div class="ad">
-        <h2>Eclairage LED</h2>
-        <img src="https://monjard1.fr/10-eclairage" alt="Produit 3">
-		<p>Prix : 89€ à 1400€</p>
-        <p>Description : Le soleil à la maison, donne le meilleur à tes plantes!</p>
-    </div>
-	    <div class="ad">
-        <h2>Substrat</h2>
-        <img src="https://monjard1.fr/4-substrats" alt="Produit 4">
-        <p>Prix : 7€ à 26€</p>
-        <p>Description : Pack d'engrais débutant ou expert.</p>
+        <p>Des boxes de toutes tailles pour cultiver où vous voulez.</p>
     </div>
     <div class="ad">
-        <h2>Box de Culture</h2>
-        <img src="https://monjard1.fr/15-bouture?page=1" alt="Produit 5">
+        <h2>Éclairage LED</h2>
+        <a href="https://monjard1.fr/10-eclairage" target="_blank">
+            <img src="https://jard1terieur.fr/331-large_default/barre-100w.jpg" alt="Éclairage LED">
+        </a>
+        <p>Prix : 89€ à 1400€</p>
+        <p>Le soleil à la maison pour le meilleur de vos plantes !</p>
+    </div>
+    <div class="ad">
+        <h2>Substrat</h2>
+        <a href="https://monjard1.fr/4-substrats" target="_blank">
+            <img src="https://jard1terieur.fr/25-large_default/brown-bear-printed-sweater.jpg" alt="Substrat">
+        </a>
+        <p>Prix : 7€ à 26€</p>
+        <p>Des substrats adaptés à tous vos besoins de culture.</p>
+    </div>
+    <div class="ad">
+        <h2>Bouturage</h2>
+        <a href="https://monjard1.fr/15-bouture" target="_blank">
+            <img src="https://jard1terieur.fr/602-large_default/clonex-50ml.jpg" alt="Bouturage">
+        </a>
         <p>Prix : 8€ à 78€</p>
-        <p>Description : Toi aussi maîtrisse l'art du clonage "Bunshinjutsu".</p>
+        <p>Maîtrisez l'art du clonage avec nos produits de bouturage.</p>
     </div>
     <div class="announcement">
         <h2>Annonce</h2>
         <p>Je cherche des testeurs pour un bot Discord dans un RP GTA. Contactez-moi pour plus d'infos !</p>
+        <a href="https://discord.gg/ey3M973yhz" target="_blank" class="discord-button">Rejoignez-nous sur Discord</a>
     </div>
-	    <script>
+    <script>
         const ads = document.querySelectorAll('.ad');
         let currentIndex = 0;
 
@@ -83,8 +140,8 @@
         // Afficher le premier produit
         showNextAd();
 
-        // Afficher un nouveau produit toutes les 10 secondes
-        setInterval(showNextAd, 250000);
+        // Afficher un nouveau produit toutes les 125 secondes
+        setInterval(showNextAd, 125000);
     </script>
 </body>
 </html>
