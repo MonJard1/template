@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicité MonJard1.fr</title>
+    <title>Publicité et Annonce MonJard1.fr</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -11,6 +11,8 @@
             color: #fff;
             background-color: #333;
             background-size: cover;
+            position: relative;
+            overflow: hidden; /* Pour s'assurer que les éléments restent dans le cadre */
         }
         .ad {
             border: 3px solid #4CAF50; /* Encadré vert */
@@ -20,6 +22,8 @@
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            z-index: 1; /* Assure que l'annonce sort de derrière */
         }
         .ad:hover {
             transform: scale(1.05);
@@ -47,6 +51,49 @@
             background-repeat: no-repeat;
             background-position: top left;
             opacity: 0.3;
+            pointer-events: none; /* Évite que l'élément soit cliquable */
+        }
+        .announcement {
+            font-size: 18px;
+            border: 3px solid #4CAF50;
+            padding: 10px;
+            width: 80%;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: -100%; /* Commence en dehors du cadre à gauche */
+            transform: translateY(-50%);
+            animation: slide-in-out 10s infinite;
+            z-index: 0; /* Assure que l'annonce est derrière */
+        }
+        @keyframes slide-in-out {
+            0% {
+                left: -100%;
+            }
+            25% {
+                left: 10%;
+            }
+            75% {
+                left: 10%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+        .discord-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #5865F2; /* Couleur Discord */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .discord-button:hover {
+            background-color: #485bdb;
         }
     </style>
 </head>
@@ -58,6 +105,10 @@
             <img src="https://monjard1.fr/themes/deo_furniture/assets/img/modules/deotemplate/images/Banniere.png" alt="Image du site">
         </a>
         <p>Découvrez nos produits de culture !</p>
+    </div>
+    <div class="announcement">
+        <h2>Annonce</h2>
+        <a href="https://discord.gg/ey3M973yhz" target="_blank" class="discord-button">Je cherche des testeurs pour un bot Discord dans un RP GTA. Contactez-moi pour plus d'infos </a>
     </div>
 </body>
 </html>
