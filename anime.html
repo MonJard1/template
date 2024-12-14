@@ -14,7 +14,7 @@
         }
         .flake {
             position: absolute;
-            top: -10%; /* Les flocons commencent légèrement au-dessus du viewport */
+            top: -10%;
             color: #fff;
             font-size: 20px;
             pointer-events: none; /* Empêche l'interaction avec les éléments */
@@ -53,13 +53,19 @@
     </style>
 </head>
 <body>
-    <div id="flakes-container"></div>
+    <div id="flakes-container">
+        <div class="flake snowflake">❄</div>
+        <div class="flake snowflake">❅</div>
+        <div class="flake snowflake">❆</div>
+        <div class="flake promotion">-20%</div>
+        <div class="flake promotion">-20%</div>
+    </div>
 
     <script>
         const snowflakeSymbols = ['❄', '❅', '❆'];
         const promotionSymbol = '-20%';
-        const snowflakeCount = 50;
-        const promotionCount = 10;
+        const snowflakeCount = 10;
+        const promotionCount = 5;
         const container = document.getElementById('flakes-container');
 
         // Fonction pour créer un élément de neige ou de promotion
