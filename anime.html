@@ -65,8 +65,17 @@
                               rect.bottom < otherRect.top || 
                               rect.top > otherRect.bottom)) {
                             // Collision détectée, changer de texte
-                            promotion.textContent = newSymbol;
-                            other.textContent = newSymbol;
+                            if (promotion.textContent === promotionSymbol) {
+                                promotion.textContent = newSymbol;
+                            } else {
+                                promotion.textContent = promotionSymbol;
+                            }
+                            
+                            if (other.textContent === promotionSymbol) {
+                                other.textContent = newSymbol;
+                            } else {
+                                other.textContent = promotionSymbol;
+                            }
                         }
                     }
                 });
@@ -78,7 +87,7 @@
             // Supprimer l'élément après l'animation
             setTimeout(() => {
                 promotion.remove();
-            }, 45000); // Durée de l'animation fixée à 45 secondes
+            }, 15000); // Durée de l'animation fixée à 15 secondes
         }
 
         // Fonction pour démarrer l'animation des promotions
