@@ -12,6 +12,9 @@
             background-color: #333;
             background-size: cover;
         }
+        .ad-container {
+            display: none; /* Cacher initialement */
+        }
         .ad {
             border: 3px solid #4CAF50; /* Encadré vert */
             padding: 10px;
@@ -39,47 +42,51 @@
     </style>
 </head>
 <body>
-    <div class="ad">
-        <h2>Pack d'Engrais</h2>
-        <a href="https://monjard1.fr/44-pack" target="_blank">
-            <img src="https://jard1terieur.fr/702-large_default/hesi-terre-starterpack.jpg" alt="Pack d'Engrais">
-        </a>
-        <p>Prix : 15€ à 75€</p>
-        <p>Nos packs d'engrais pour débutants et experts !</p>
+    <div class="ad-container">
+        <div class="ad">
+            <h2>Pack d'Engrais</h2>
+            <a href="https://monjard1.fr/44-pack" target="_blank">
+                <img src="https://jard1terieur.fr/702-large_default/hesi-terre-starterpack.jpg" alt="Pack d'Engrais">
+            </a>
+            <p>Prix : 15€ à 75€</p>
+            <p>Nos packs d'engrais pour débutants et experts !</p>
+        </div>
+        <div class="ad">
+            <h2>Box de Culture</h2>
+            <a href="https://monjard1.fr/11-chambre-culture" target="_blank">
+                <img src="https://jard1terieur.fr/346-large_default/g-max200-200x200x200cm.jpg" alt="Box de Culture">
+            </a>
+            <p>Prix : 70€ à 388€</p>
+            <p>Des boxes de toutes tailles pour cultiver où vous voulez.</p>
+        </div>
+        <div class="ad">
+            <h2>Éclairage LED</h2>
+            <a href="https://monjard1.fr/10-eclairage" target="_blank">
+                <img src="https://jard1terieur.fr/331-large_default/barre-100w.jpg" alt="Éclairage LED">
+            </a>
+            <p>Prix : 89€ à 1400€</p>
+            <p>Le soleil à la maison pour le meilleur de vos plantes !</p>
+        </div>
+        <div class="ad">
+            <h2>Substrat</h2>
+            <a href="https://monjard1.fr/4-substrats" target="_blank">
+                <img src="https://jard1terieur.fr/25-large_default/brown-bear-printed-sweater.jpg" alt="Substrat">
+            </a>
+            <p>Prix : 7€ à 26€</p>
+            <p>Des substrats adaptés à tous vos besoins de culture.</p>
+        </div>
+        <div class="ad">
+            <h2>Bouturage</h2>
+            <a href="https://monjard1.fr/15-bouture" target="_blank">
+                <img src="https://jard1terieur.fr/602-large_default/clonex-50ml.jpg" alt="Bouturage">
+            </a>
+            <p>Prix : 8€ à 78€</p>
+            <p>Maîtrisez l'art du clonage avec nos produits de bouturage.</p>
+        </div>
     </div>
-    <div class="ad">
-        <h2>Box de Culture</h2>
-        <a href="https://monjard1.fr/11-chambre-culture" target="_blank">
-            <img src="https://jard1terieur.fr/346-large_default/g-max200-200x200x200cm.jpg" alt="Box de Culture">
-        </a>
-        <p>Prix : 70€ à 388€</p>
-        <p>Des boxes de toutes tailles pour cultiver où vous voulez.</p>
-    </div>
-    <div class="ad">
-        <h2>Éclairage LED</h2>
-        <a href="https://monjard1.fr/10-eclairage" target="_blank">
-            <img src="https://jard1terieur.fr/331-large_default/barre-100w.jpg" alt="Éclairage LED">
-        </a>
-        <p>Prix : 89€ à 1400€</p>
-        <p>Le soleil à la maison pour le meilleur de vos plantes !</p>
-    </div>
-    <div class="ad">
-        <h2>Substrat</h2>
-        <a href="https://monjard1.fr/4-substrats" target="_blank">
-            <img src="https://jard1terieur.fr/25-large_default/brown-bear-printed-sweater.jpg" alt="Substrat">
-        </a>
-        <p>Prix : 7€ à 26€</p>
-        <p>Des substrats adaptés à tous vos besoins de culture.</p>
-    </div>
-    <div class="ad">
-        <h2>Bouturage</h2>
-        <a href="https://monjard1.fr/15-bouture" target="_blank">
-            <img src="https://jard1terieur.fr/602-large_default/clonex-50ml.jpg" alt="Bouturage">
-        </a>
-        <p>Prix : 8€ à 78€</p>
-        <p>Maîtrisez l'art du clonage avec nos produits de bouturage.</p>
-    </div>
+
     <script>
+        const adsContainer = document.querySelector('.ad-container');
         const ads = document.querySelectorAll('.ad');
         let currentIndex = 0;
 
@@ -97,6 +104,7 @@
 
         // Fonction pour démarrer la boucle des publicités
         function startAdLoop() {
+            adsContainer.style.display = 'block'; // Afficher le conteneur
             // Afficher le premier produit
             showNextAd();
 
@@ -106,7 +114,7 @@
             // Arrêter la boucle après 10 minutes (600000 millisecondes) et relancer après une pause
             setTimeout(() => {
                 clearInterval(adInterval); // Arrêter la boucle
-                ads.forEach(ad => ad.style.display = 'none'); // Masquer tous les produits
+                adsContainer.style.display = 'none'; // Cacher le conteneur
                 setTimeout(startAdLoop, 600000); // Attendre 10 minutes (600000 millisecondes) et relancer
             }, 600000);
         }
