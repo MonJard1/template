@@ -6,30 +6,26 @@
     <title>Effet de Neige et Promotions -20%</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            color: #fff;
-            background-color: transparent; /* Fond transparent pour s'adapter à Streamlabs */
+            margin: 0;
+            padding: 0;
             overflow: hidden; /* Empêche les barres de défilement */
+            background-color: transparent; /* Fond transparent pour s'adapter à Streamlabs */
         }
         .flake {
             position: absolute;
-            top: -10%;
-            color: #fff;
+            top: -5%; /* Les flocons commencent légèrement au-dessus du viewport */
             font-size: 20px;
+            color: #fff;
             pointer-events: none; /* Empêche l'interaction avec les éléments */
-            animation: fall linear infinite;
+            animation: fall 10s linear infinite, sway 3s ease-in-out infinite;
         }
         .promotion {
             font-size: 24px;
             color: #FFD700; /* Couleur dorée */
         }
-        .snowflake {
-            font-size: 14px;
-        }
         @keyframes fall {
             to {
-                transform: translateY(110vh); /* Assurer que les flocons tombent hors du viewport */
+                transform: translateY(105vh); /* Assurer que les flocons tombent hors du viewport */
             }
         }
         @keyframes sway {
@@ -40,32 +36,15 @@
                 transform: translateX(20px);
             }
         }
-        .snowflake {
-            animation-duration: 10s;
-            animation-timing-function: ease-in;
-            animation-name: fall, sway;
-        }
-        .promotion {
-            animation-duration: 12s;
-            animation-timing-function: ease-in;
-            animation-name: fall, sway;
-        }
     </style>
 </head>
 <body>
-    <div id="flakes-container">
-        <div class="flake snowflake">❄</div>
-        <div class="flake snowflake">❅</div>
-        <div class="flake snowflake">❆</div>
-        <div class="flake promotion">-20%</div>
-        <div class="flake promotion">-20%</div>
-    </div>
+    <div id="flakes-container"></div>
 
     <script>
         const snowflakeSymbols = ['❄', '❅', '❆'];
         const promotionSymbol = '-20%';
-        const snowflakeCount = 10;
-        const promotionCount = 5;
+        const flakeCount = 50;
         const container = document.getElementById('flakes-container');
 
         // Fonction pour créer un élément de neige ou de promotion
@@ -74,7 +53,7 @@
             flake.textContent = symbol;
             flake.className = `flake ${className}`;
             flake.style.left = Math.random() * 100 + 'vw';
-            flake.style.animationDelay = Math.random() * 5 + 's';
+            flake.style.animationDelay = Math.random() * 10 + 's';
             flake.style.opacity = Math.random();
             container.appendChild(flake);
 
@@ -84,23 +63,25 @@
             }, 10000); // Durée de vie des flocons fixée à 10 secondes
         }
 
-        // Créer les flocons de neige
-        for (let i = 0; i < snowflakeCount; i++) {
-            const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
-            createFlake(symbol, 'snowflake');
-        }
-
-        // Créer les promotions
-        for (let i = 0; i < promotionCount; i++) {
-            createFlake(promotionSymbol, 'promotion');
+        // Créer les flocons de neige et promotions
+        for (let i = 0; i < flakeCount; i++) {
+            const isPromotion = Math.random() > 0.8; // 20% de chance d'être une promotion
+            if (isPromotion) {
+                createFlake(promotionSymbol, 'promotion');
+            } else {
+                const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                createFlake(symbol, 'snowflake');
+            }
         }
 
         // Ajouter de nouveaux flocons de neige et promotions toutes les 2 secondes
         setInterval(() => {
-            const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
-            createFlake(symbol, 'snowflake');
-            if (Math.random() > 0.8) { // Ajouter une promotion de temps en temps
+            const isPromotion = Math.random() > 0.8; // 20% de chance d'être une promotion
+            if (isPromotion) {
                 createFlake(promotionSymbol, 'promotion');
+            } else {
+                const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                createFlake(symbol, 'snowflake');
             }
         }, 2000);
     </script>
