@@ -12,24 +12,24 @@
             background-color: #333;
             overflow: hidden; /* Empêche les barres de défilement */
         }
-        .snowflake, .promotion {
+        .flake {
             position: absolute;
-            top: 0;
+            top: -10%; /* Les flocons commencent légèrement au-dessus du viewport */
             color: #fff;
             font-size: 20px;
             pointer-events: none; /* Empêche l'interaction avec les éléments */
             animation: fall linear infinite;
         }
-        .snowflake {
-            font-size: 14px;
-        }
         .promotion {
             font-size: 24px;
             color: #FFD700; /* Couleur dorée */
         }
+        .snowflake {
+            font-size: 14px;
+        }
         @keyframes fall {
             to {
-                transform: translateY(100vh);
+                transform: translateY(110vh); /* Assurer que les flocons tombent hors du viewport */
             }
         }
         @keyframes sway {
@@ -53,20 +53,20 @@
     </style>
 </head>
 <body>
-    <div id="snowflakes-container"></div>
+    <div id="flakes-container"></div>
 
     <script>
         const snowflakeSymbols = ['❄', '❅', '❆'];
         const promotionSymbol = '-20%';
         const snowflakeCount = 50;
         const promotionCount = 10;
-        const container = document.getElementById('snowflakes-container');
+        const container = document.getElementById('flakes-container');
 
         // Fonction pour créer un élément de neige ou de promotion
         function createFlake(symbol, className) {
             const flake = document.createElement('div');
             flake.textContent = symbol;
-            flake.className = className;
+            flake.className = `flake ${className}`;
             flake.style.left = Math.random() * 100 + 'vw';
             flake.style.animationDelay = Math.random() * 5 + 's';
             flake.style.opacity = Math.random();
