@@ -62,24 +62,10 @@
             border-radius: 10px;
             position: absolute;
             top: 50%;
-            left: -100%; /* Commence en dehors du cadre à gauche */
-            transform: translateY(-50%);
-            animation: slide-in-out 10s infinite;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 0; /* Assure que l'annonce est derrière */
-        }
-        @keyframes slide-in-out {
-            0% {
-                left: -100%;
-            }
-            25% {
-                left: 10%;
-            }
-            75% {
-                left: 10%;
-            }
-            100% {
-                left: -100%;
-            }
+            display: none; /* Commence cachée */
         }
         .discord-button {
             display: inline-block;
@@ -108,7 +94,23 @@
     </div>
     <div class="announcement">
         <h2>Annonce</h2>
-        <a href="https://discord.gg/ey3M973yhz" target="_blank" class="discord-button">Je cherche des testeurs pour un bot Discord dans un RP GTA. Contactez-moi pour plus d'infos </a>
+        <p>Je cherche des testeurs pour un bot Discord dans un RP GTA. Contactez-moi pour plus d'infos !</p>
+        <a href="https://discord.gg/ey3M973yhz" target="_blank" class="discord-button">Rejoignez-nous sur Discord</a>
     </div>
+
+    <script>
+        const announcement = document.querySelector('.announcement');
+
+        function showAnnouncement() {
+            announcement.style.display = 'block';
+            setTimeout(() => {
+                announcement.style.display = 'none';
+                setTimeout(showAnnouncement, 600000); // Afficher après 10 minutes
+            }, 120000); // Cacher après 2 minutes
+        }
+
+        // Démarrer le cycle de l'annonce
+        showAnnouncement();
+    </script>
 </body>
 </html>
