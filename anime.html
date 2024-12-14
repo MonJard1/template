@@ -22,6 +22,7 @@
             border: 2px solid #006400; /* Bordure vert foncé */
             border-radius: 5px;
             background-color: rgba(0, 100, 0, 0.2); /* Vert foncé translucide */
+            transition: transform 0.5s, left 0.5s, top 0.5s; /* Transition plus fluide */
         }
     </style>
 </head>
@@ -32,7 +33,9 @@
         const promotionSymbol = '-20%';
         const newSymbol = 'monjard1.fr';
         const promotionCount = 10;
+        const changeCooldown = 3000; // 3 secondes
         const container = document.getElementById('promotions-container');
+        const lastChanged = new WeakMap(); // Utilisé pour stocker les dernières fois où chaque promotion a changé
 
         // Fonction pour créer un élément de promotion
         function createPromotion() {
@@ -44,6 +47,7 @@
             promotion.dx = (Math.random() * 2 - 1) * 3; // Vitesse horizontale aléatoire
             promotion.dy = (Math.random() * 2 - 1) * 3; // Vitesse verticale aléatoire
             container.appendChild(promotion);
+            lastChanged.set(promotion, Date.now()); // Initialiser la dernière fois de changement
 
             function move() {
                 const rect = promotion.getBoundingClientRect();
@@ -64,17 +68,13 @@
                               rect.left > otherRect.right || 
                               rect.bottom < otherRect.top || 
                               rect.top > otherRect.bottom)) {
-                            // Collision détectée, changer de texte
-                            if (promotion.textContent === promotionSymbol) {
-                                promotion.textContent = newSymbol;
-                            } else {
-                                promotion.textContent = promotionSymbol;
-                            }
-                            
-                            if (other.textContent === promotionSymbol) {
-                                other.textContent = newSymbol;
-                            } else {
-                                other.textContent = promotionSymbol;
+                            // Collision détectée, changer de texte si le cooldown est terminé
+                            const now = Date.now();
+                            if (now - lastChanged.get(promotion) > changeCooldown && now - lastChanged.get(other) > changeCooldown) {
+                                promotion.textContent = promotion.textContent === promotionSymbol ? newSymbol : promotionSymbol;
+                                other.textContent = other.textContent === promotionSymbol ? newSymbol : promotionSymbol;
+                                lastChanged.set(promotion, now);
+                                lastChanged.set(other, now);
                             }
                         }
                     }
