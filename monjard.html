@@ -22,11 +22,14 @@
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             transition: transform 0.3s, background-color 0.3s;
-            position: relative;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1; /* Assure que l'annonce sort de derrière */
         }
         .ad:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) translateX(-50%);
             background-color: rgba(0, 0, 0, 0.85);
         }
         .ad img {
@@ -61,27 +64,27 @@
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             position: absolute;
-            top: 50%;
-            right: -100%; /* Commence en dehors du cadre à droite */
-            transform: translateY(-50%);
+            top: -100%; /* Commence en dehors du cadre en haut */
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 0; /* Assure que l'annonce est derrière */
             opacity: 0; /* Commence invisible */
         }
         @keyframes slide-in-out {
             0% {
-                right: -100%;
+                top: -100%;
                 opacity: 0;
             }
             10% {
-                right: 0;
+                top: 20%;
                 opacity: 1;
             }
             90% {
-                right: 0;
+                top: 20%;
                 opacity: 1;
             }
             100% {
-                right: -100%;
+                top: -100%;
                 opacity: 0;
             }
         }
