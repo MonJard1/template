@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             text-align: center;
             color: #fff;
-            background-color: #333;
+            background-color: transparent; /* Fond transparent pour s'adapter à Streamlabs */
             overflow: hidden; /* Empêche les barres de défilement */
         }
         .flake {
@@ -75,7 +75,7 @@
             // Supprimer l'élément après l'animation
             setTimeout(() => {
                 flake.remove();
-            }, parseFloat(flake.style.animationDuration) * 1000);
+            }, 10000); // Durée de vie des flocons fixée à 10 secondes
         }
 
         // Créer les flocons de neige
