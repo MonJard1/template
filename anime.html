@@ -15,7 +15,13 @@
         .promotion {
             position: absolute;
             font-size: 24px;
-            color: #006400; /* Vert foncé */
+            color: #32CD32; /* Vert lime */
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border: 2px solid #006400; /* Bordure vert foncé */
+            border-radius: 5px;
+            background-color: rgba(0, 100, 0, 0.2); /* Vert foncé translucide */
         }
     </style>
 </head>
@@ -72,7 +78,7 @@
             // Supprimer l'élément après l'animation
             setTimeout(() => {
                 promotion.remove();
-            }, 10000); // Durée de l'animation fixée à 10 secondes
+            }, 45000); // Durée de l'animation fixée à 45 secondes
         }
 
         // Fonction pour démarrer l'animation des promotions
