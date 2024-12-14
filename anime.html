@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effet de Neige et Promotions -20%</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #fff;
+            background-color: #333;
+            overflow: hidden; /* Empêche les barres de défilement */
+        }
+        .snowflake, .promotion {
+            position: absolute;
+            top: 0;
+            color: #fff;
+            font-size: 20px;
+            pointer-events: none; /* Empêche l'interaction avec les éléments */
+            animation: fall linear infinite;
+        }
+        .snowflake {
+            font-size: 14px;
+        }
+        .promotion {
+            font-size: 24px;
+            color: #FFD700; /* Couleur dorée */
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+        .snowflake {
+            animation-duration: 10s;
+            animation-timing-function: ease-in;
+            animation-name: fall, sway;
+        }
+        .promotion {
+            animation-duration: 12s;
+            animation-timing-function: ease-in;
+            animation-name: fall, sway;
+        }
+    </style>
+</head>
+<body>
+    <div id="snowflakes-container"></div>
+
+    <script>
+        const snowflakeSymbols = ['❄', '❅', '❆'];
+        const promotionSymbol = '-20%';
+        const snowflakeCount = 50;
+        const promotionCount = 10;
+        const container = document.getElementById('snowflakes-container');
+
+        // Fonction pour créer un élément de neige ou de promotion
+        function createFlake(symbol, className) {
+            const flake = document.createElement('div');
+            flake.textContent = symbol;
+            flake.className = className;
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.animationDelay = Math.random() * 5 + 's';
+            flake.style.opacity = Math.random();
+            container.appendChild(flake);
+
+            // Supprimer l'élément après l'animation
+            setTimeout(() => {
+                flake.remove();
+            }, parseFloat(flake.style.animationDuration) * 1000);
+        }
+
+        // Créer les flocons de neige
+        for (let i = 0; i < snowflakeCount; i++) {
+            const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+            createFlake(symbol, 'snowflake');
+        }
+
+        // Créer les promotions
+        for (let i = 0; i < promotionCount; i++) {
+            createFlake(promotionSymbol, 'promotion');
+        }
+
+        // Ajouter de nouveaux flocons de neige et promotions toutes les 2 secondes
+        setInterval(() => {
+            const symbol = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+            createFlake(symbol, 'snowflake');
+            if (Math.random() > 0.8) { // Ajouter une promotion de temps en temps
+                createFlake(promotionSymbol, 'promotion');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
