@@ -25,7 +25,7 @@
             transform: translateX(-50%);
             bottom: -100%; /* Commence hors de l'écran en bas */
             opacity: 0;
-            transition: transform 2s, opacity 2s; /* Transition fluide */
+            transition: transform 2s ease-in-out, opacity 2s ease-in-out; /* Transition fluide */
         }
         .discord-button {
             display: inline-block;
@@ -53,9 +53,11 @@
         const announcement = document.getElementById('announcement');
 
         function showAnnouncement() {
-            announcement.style.transform = 'translateX(-50%) translateY(-50%)';
+            // Faire apparaître l'annonce
+            announcement.style.transform = 'translateX(-50%) translateY(-100%)';
             announcement.style.opacity = '1';
             setTimeout(() => {
+                // Faire disparaître l'annonce
                 announcement.style.transform = 'translateX(-50%) translateY(100%)';
                 announcement.style.opacity = '0';
                 setTimeout(showAnnouncement, 600000); // Afficher après 10 minutes
