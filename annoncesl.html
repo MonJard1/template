@@ -11,22 +11,21 @@
             color: #fff;
             background-color: #333;
             background-size: cover;
+            overflow: hidden; /* Pour éviter le défilement */
         }
         .announcement {
             font-size: 18px;
-            margin-top: 20px;
             border: 3px solid #4CAF50;
             padding: 10px;
             width: 80%;
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
-            margin: 20px auto;
-            animation: blink 1s linear infinite;
-        }
-        @keyframes blink {
-            50% {
-                opacity: 0.5;
-            }
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -100%; /* Commence hors de l'écran en bas */
+            opacity: 0;
+            transition: transform 2s, opacity 2s; /* Transition fluide */
         }
         .discord-button {
             display: inline-block;
@@ -45,9 +44,26 @@
     </style>
 </head>
 <body>
-    <div class="announcement">
+    <div class="announcement" id="announcement">
         <h2>Annonce</h2>
         <a href="https://discord.gg/ey3M973yhz" target="_blank" class="discord-button">Je cherche des testeurs pour un bot Discord dans un RP GTA. Contactez-moi pour plus d'infos !</a>
     </div>
+
+    <script>
+        const announcement = document.getElementById('announcement');
+
+        function showAnnouncement() {
+            announcement.style.transform = 'translateX(-50%) translateY(-50%)';
+            announcement.style.opacity = '1';
+            setTimeout(() => {
+                announcement.style.transform = 'translateX(-50%) translateY(100%)';
+                announcement.style.opacity = '0';
+                setTimeout(showAnnouncement, 600000); // Afficher après 10 minutes
+            }, 180000); // Cacher après 3 minutes
+        }
+
+        // Démarrer le cycle de l'annonce
+        showAnnouncement();
+    </script>
 </body>
 </html>
